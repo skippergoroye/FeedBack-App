@@ -37,12 +37,6 @@ function DynamicValue () {
   )
 
 
-
-
-
-
-  
-
   return (
     <div className="me">
       <h1>{title.toUpperCase()}</h1>
