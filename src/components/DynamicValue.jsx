@@ -53,7 +53,7 @@ function DynamicValue () {
       {/* {showComments ? ('comment') : ('no')}      */}
 
 
-       {/* using No */}
+      {/* using No */}
       {showComments ? (
         <div className="comments">
           <h2>Comments: ({comments.length})</h2>
@@ -70,7 +70,7 @@ function DynamicValue () {
       )}
 
 
-       {/* Using null */}
+      {/* Using null */}
       {showComments ? (
         <div className="comments">
           <h2>Comments: ({comments.length})</h2>
