@@ -2,9 +2,11 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import Header from "./components/Header";
+import FeedBackData from "./Data/FeedBackData";
 import FeedbackItem from "./components/FeedbackItem";
 import FeedbackList from "./components/FeedbackList";
-import FeedBackData from "./Data/FeedBackData";
+import FeedbackStats from "./components/FeedbackStats";
+
 
 
 
@@ -24,6 +26,7 @@ function App () {
     <>
       <Header />
       <div className="container">
+        <FeedbackStats feedback={feedback}/>
         <FeedbackList feedback={feedback} handleDelete={deleteFeedBack} />
       </div>
     </>
