@@ -1,36 +1,35 @@
-import React from 'react'
-import FeedbackItem from '../components/FeedbackItem'
+import React from "react";
+import FeedbackItem from "../components/FeedbackItem";
+import PropTypes from "prop-types";
 
-const FeedbackList = ({ feedback }) => {
-    // console.log(feedback)
+const FeedbackList = ({ feedback, handleDelete }) => {
+  // console.log(feedback)
 
-    if(!feedback || feedback.length === 0){
-      return <p>No Feedback Yet</p>
-    }
-
+  if (!feedback || feedback.length === 0) {
+    return <p>No Feedback Yet</p>;
+  }
 
   return (
-    <div className='feedback-list'>
+    <div className="feedback-list">
       {feedback.map((item) => (
-        <FeedbackItem key={item.id} item={item} />
+        <FeedbackItem
+          key={item.id}
+          item={item}
+          handleDelete={handleDelete}
+        />
       ))}
     </div>
-  )
-}
+  );
+};
 
-
-
-FeedbackList.PropTypes = {
-  feedback: PropTypes.arrayOf (
-    PropTypes.shape ({
+FeedbackList.propTypes = {
+  feedback: PropTypes.arrayOf(
+    PropTypes.shape({
       id: PropTypes.number.isRequired,
       text: PropTypes.string.isRequired,
       rating: PropTypes.number.isRequired,
     })
-  )
-}
+  ),
+};
 
-
-
-
-export default FeedbackList
+export default FeedbackList;
