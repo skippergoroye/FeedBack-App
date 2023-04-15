@@ -1,3 +1,4 @@
+import { v4 as uuidV4 } from 'uuid'
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
@@ -16,6 +17,12 @@ function App () {
   const [feedback, setFeedBack] = useState(FeedBackData)
 
 
+  const addFeedback = (newFeedback) => {
+    newFeedback.id = uuidV4()
+    setFeedBack([newFeedback, ...feedback])
+    // console.log(newFeedback)
+  }
+
   const deleteFeedBack = (id) =>  {
     // console.log('App', id)
     if(window.confirm('Are you sure you want to delete?')) {
@@ -28,8 +35,8 @@ function App () {
     <>
       <Header />
       <div className="container">
-        <FeedbackForm  />
-        <FeedbackStats feedback={feedback}/>
+        <FeedbackForm  handleAdd={addFeedback} />
+        <FeedbackStats feedback={feedback} />
         <FeedbackList feedback={feedback} handleDelete={deleteFeedBack} />
       </div>
     </>
