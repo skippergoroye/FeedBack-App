@@ -1,4 +1,5 @@
 import { v4 as uuidV4 } from 'uuid'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
@@ -8,6 +9,11 @@ import FeedbackItem from "./components/FeedbackItem";
 import FeedbackList from "./components/FeedbackList";
 import FeedbackStats from "./components/FeedbackStats";
 import FeedbackForm from "./components/FeedbackForm";
+import AboutPage from './pages/AboutPage';
+import AboutIconLink from './components/AboutIconLink';
+import UseParams from './components/UseParams';
+import UseNavigate from './components/UseNavigate';
+
 
 
 
@@ -32,14 +38,26 @@ function App () {
   
 
   return (
-    <>
+    <Router>
       <Header />
       <div className="container">
-        <FeedbackForm  handleAdd={addFeedback} />
-        <FeedbackStats feedback={feedback} />
-        <FeedbackList feedback={feedback} handleDelete={deleteFeedBack} />
+      <Routes>
+        <Route path="/" element={
+          <>
+            <FeedbackForm handleAdd={addFeedback} />
+            <FeedbackStats navigatefeedback={feedback} />
+            <FeedbackList feedback={feedback} handleDelete={deleteFeedBack} />
+          </>
+        }>
+        </Route>
+
+          <Route path='/about' element={<AboutPage />} />
+          <Route path='/params/:id/:name' element={<UseParams />} />
+          <Route path='/navigate/*' element={<UseNavigate />} />
+      </Routes>
+      <AboutIconLink />
       </div>
-    </>
+    </Router>
   );
 }
 
