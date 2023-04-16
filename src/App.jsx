@@ -13,6 +13,7 @@ import AboutPage from './pages/AboutPage';
 import AboutIconLink from './components/AboutIconLink';
 import UseParams from './components/UseParams';
 import UseNavigate from './components/UseNavigate';
+import { FeedbackProvider } from './context/FeedbackContext'
 
 
 
@@ -38,6 +39,7 @@ function App () {
   
 
   return (
+    <FeedbackProvider>
     <Router>
       <Header />
       <div className="container">
@@ -45,7 +47,7 @@ function App () {
         <Route path="/" element={
           <>
             <FeedbackForm handleAdd={addFeedback} />
-            <FeedbackStats navigatefeedback={feedback} />
+            <FeedbackStats feedback={feedback} />
             <FeedbackList feedback={feedback} handleDelete={deleteFeedBack} />
           </>
         }>
@@ -58,6 +60,7 @@ function App () {
       <AboutIconLink />
       </div>
     </Router>
+    </FeedbackProvider>
   );
 }
 
