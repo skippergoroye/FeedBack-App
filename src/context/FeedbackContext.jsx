@@ -1,6 +1,6 @@
 import { v4 as uuidV4 } from 'uuid'
-import { createContext, useState } from "react";
-import FeedBackData from "../Data/FeedBackData";
+import { createContext, useEffect, useState } from "react";
+// import FeedBackData from "../Data/FeedBackData";
 
 
 const FeedbackContext = createContext();
@@ -12,31 +12,44 @@ export const FeedbackProvider = ({ children }) => {
     // const [feedback, setFeedBack] = useState(FeedBackData)
 
 
-
-    const [feedback, setFeedBack] = useState([
-        {
-            id: 1,
-            text: 'This item 1 is from context',
-            rating: 10
-        },
-        {
-            id: 2,
-            text: 'This item 2 is from context',
-            rating: 19
-        },
-        {
-            id: 3,
-            text: 'This item 3 is from context',
-            rating: 7
-        }
-    ])
-
+    const [feedback, setFeedBack] = useState([])
 
 
     const [editData, setEditData] = useState({
         item: {},
         edit: false
     })
+
+
+    useEffect(() => {
+        fetchFeedBack()
+        // console.log('1234')
+    }, [])
+
+
+    // Fetch Feedback  Data
+    const fetchFeedBack = async () => {
+        const response = await fetch(`http://localhost:5000/feedback`)
+
+        const data = await response.json()
+
+        setFeedBack(data)
+        // console.log(data)
+    }
+
+
+
+    // using Promises
+    // const fetchFeedBack = () => {
+    //     fetch('http://localhost:5000/feedback')
+    //        .then(res => res.json())
+    //        .then(data => setFeedBack(data))
+    // }
+
+
+
+
+
 
 
     // Set item to be updated
@@ -65,15 +78,6 @@ export const FeedbackProvider = ({ children }) => {
         )
     }
 
-    const gor = () => {
-        
-    }
-
-
-
-
-
-   
 
 
     // DeleteFeedBack

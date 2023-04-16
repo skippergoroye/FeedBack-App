@@ -24,8 +24,7 @@ const FeedbackForm = () => {
       setText(editData.item.text)
       setRating(editData.rating)
     }
-
-    console.log('hello')
+    // console.log('hello')
   }, [editData])
 
     const handleTextChange = (e) => {
