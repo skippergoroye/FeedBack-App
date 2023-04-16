@@ -39,13 +39,6 @@ export const FeedbackProvider = ({ children }) => {
     })
 
 
-    // AddFeedBack
-    const addFeedback = (newFeedback) => {
-        newFeedback.id = uuidV4()
-        setFeedBack([newFeedback, ...feedback])
-    }
-
-
     // Set item to be updated
     const editFeedback = (item) => {
         setEditData({
@@ -53,6 +46,27 @@ export const FeedbackProvider = ({ children }) => {
             edit: true
         })
     }
+
+
+
+
+    // AddFeedBack
+    const addFeedback = (newFeedback) => {
+        newFeedback.id = uuidV4()
+        setFeedBack([newFeedback, ...feedback])
+    }
+
+
+
+    // UpdateFeedBack
+    const updateFeedBack = (id, updItem) => {
+        setFeedBack(feedback.map((item) => (item.id === id ? { ...item, ...updItem } : item))
+        // console.log(id, updItem)
+        )
+    }
+
+
+
 
 
    
@@ -75,6 +89,7 @@ export const FeedbackProvider = ({ children }) => {
             editData,
             addFeedback,
             editFeedback,
+            updateFeedBack,
             deleteFeedBack,
         }}>
 
