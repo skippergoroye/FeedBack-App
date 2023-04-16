@@ -1,7 +1,18 @@
 import React, { useState } from "react";
 
+// Content APi
+import { useContext, useEffect } from "react";
+import FeedbackContext from "../context/FeedbackContext";
+
 const RatingSelect = ({ select }) => {
   const [selected, setSelected] = useState(5);
+
+  const { editData } = useContext(FeedbackContext)
+
+
+  useEffect(() => {
+    setSelected(editData.item.rating)
+  }, [editData])
 
   const handleChange = (e) => {
     setSelected(+e.currentTarget.value)

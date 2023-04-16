@@ -4,8 +4,9 @@ import Button from "./shared/Button";
 import RatingSelect from "./RatingSelect";
 
 // Content APi
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import FeedbackContext from "../context/FeedbackContext";
+import FeedBackData from "../Data/FeedBackData";
 
 
 const FeedbackForm = () => {
@@ -15,7 +16,17 @@ const FeedbackForm = () => {
   const [message, setMessage] = useState('');
 
 
-  const { addFeedback } = useContext(FeedbackContext)
+  const { addFeedback, editData } = useContext(FeedbackContext)
+
+  useEffect(() => {
+    if(editData.edit === true){
+      setBtnDisabled(false)
+      setText(editData.item.text)
+      setRating(editData.rating)
+    }
+
+    console.log('hello')
+  }, [editData])
 
     const handleTextChange = (e) => {
         if(text === ''){
@@ -61,6 +72,7 @@ const FeedbackForm = () => {
                 <input
                     type="text"
                     placeholder="Write a review"
+                    value={text}
                     onChange={handleTextChange}
                     // onClick={() => setText(console.log(123))}
                 />
