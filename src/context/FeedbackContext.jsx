@@ -11,10 +11,8 @@ export const FeedbackProvider = ({ children }) => {
     // Using Data fron the json file
     // const [feedback, setFeedBack] = useState(FeedBackData)
 
-
+    const [isLoading, setIsLoading] = useState(true)
     const [feedback, setFeedBack] = useState([])
-
-
     const [editData, setEditData] = useState({
         item: {},
         edit: false
@@ -27,13 +25,14 @@ export const FeedbackProvider = ({ children }) => {
     }, [])
 
 
-    // Fetch Feedback  Data
+    // using async Await Fetch Feedback  Data
     const fetchFeedBack = async () => {
         const response = await fetch(`http://localhost:5000/feedback`)
 
         const data = await response.json()
 
         setFeedBack(data)
+        setIsLoading(false)
         // console.log(data)
     }
 
@@ -95,6 +94,7 @@ export const FeedbackProvider = ({ children }) => {
         value={{
             feedback,
             editData,
+            isLoading,
             addFeedback,
             editFeedback,
             updateFeedBack,
